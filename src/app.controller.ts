@@ -20,7 +20,7 @@ export class AppController {
 		try {
 			const content: string = ejs.render(Buffer.from(file.buffer).toString(), { data });
 
-			const browser: Browser = await puppeteer.launch({ headless: true });
+			const browser: Browser = await puppeteer.launch({ headless: true, args: ['--no-sandbox'] });
 			const page: Page = await browser.newPage();
 			await page.setContent(content);
 

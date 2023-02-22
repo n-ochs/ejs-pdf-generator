@@ -56,7 +56,7 @@ export class AppController {
 	@UseInterceptors(FileInterceptor('file'))
 	async ejsToPdf(@Response() res: Res, @UploadedFile() file: Express.Multer.File, @Body() data: any): Promise<void> {
 		try {
-			const buffer: Buffer = await this.generatePDF(file, data);
+			const buffer: Buffer = await this.generatePDF(file, JSON.parse(data.data));
 			res.set({
 				// pdf
 				'Content-Type': 'application/pdf',
